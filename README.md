@@ -11,8 +11,16 @@ This repository bridges theoretical academic concepts with practical Python prog
 ### 🗂 Folders & Core Modules
 
 #### 1. 📐 Precalculus & Mathematics (Blitzer 7th Edition)
+* **`ch1_functions_graphs.py`**: Visualizing functional behavior, evaluating domain/range, and graphing transformations.
+* **`ch2_polynomial_rational.py`**: Evaluating polynomial zero multiplicities, end behavior, and rational function asymptotes.
+* **`ch3_exponential_logarithmic.py`**: Modeling exponential growth/decay and logarithmic scale transformations.
+* **`ch4_trigonometric_functions.py`**: Unit circle calculations, angle measure conversions, and multi-panel trigonometric wave plots with asymptote masking.
 
 #### 2. 🧪 Sociology (Benokraitis SOC)
+* **`ch1_sociological_thinking.py`**: Mapping C. Wright Mills' Sociological Imagination (Personal Troubles vs. Public Issues) and visualizing theoretical frameworks (Functionalism, Conflict Theory, Symbolic Interactionism).
+* **`ch2_examining_social_world.py`**: Analyzing research designs, variable relationships (Independent vs. Dependent), and plotting correlation trends.
+* **`ch3_culture_analyzer.py`**: Quantifying material vs. non-material cultural elements, language relativity (Sapir-Whorf Hypothesis), and value emphasis.
+* **`ch4_socialization_analyzer.py`**: Modeling shifts in primary and secondary agents of socialization (Family, Peers, School, Mass Media) across developmental life stages.
 
 
 ---
