@@ -1,96 +1,84 @@
-import math
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 
-def trig_calculator(angle_degrees):
-    """Calculates sine, cosine, tangent, and cotangent for a given angle in degrees."""
-    angle_radians = math.radians(angle_degrees)
+def verify_fundamental_trig_values():
+    """Evaluates trigonometric functions across standard unit circle angles:
 
-    sin_val = math.sin(angle_radians)
-    cos_val = math.cos(angle_radians)
+    Calculates sin(x), cos(x), and tan(x) for common angles in standard position.
+    """
+    angles_deg = [0, 30, 45, 60, 90, 120, 135, 150, 180]
+    angles_rad = np.radians(angles_deg)
 
-    # Tangent is undefined where cos(x) = 0 (90°, 270°, etc.)
-    tan_val = (
-        f"{math.tan(angle_radians):.4f}"
-        if abs(cos_val) > 1e-10
-        else "Undefined (Asymptote)"
-    )
+    results = []
+    for deg, rad in zip(angles_deg, angles_rad):
+        sin_val = np.sin(rad)
+        cos_val = np.cos(rad)
 
-    # Cotangent is undefined where sin(x) = 0 (0°, 180°, 360°, etc.)
-    cot_val = (
-        f"{1 / math.tan(angle_radians):.4f}"
-        if abs(sin_val) > 1e-10
-        else "Undefined (Asymptote)"
-    )
+        # Quotient calculation (handling undefined tan at 90 deg)
+        tan_calc = (
+            sin_val / cos_val if not np.isclose(cos_val, 0) else np.nan
+        )
 
-    print(f"--- Trigonometric Values for {angle_degrees}° ---")
-    print(f"Radians: {angle_radians:.4f} rad")
-    print(f"sin({angle_degrees}°): {sin_val:.4f}")
-    print(f"cos({angle_degrees}°): {cos_val:.4f}")
-    print(f"tan({angle_degrees}°): {tan_val}")
-    print(f"cot({angle_degrees}°): {cot_val}\n")
+        results.append(
+            {
+                "Angle (Deg)": deg,
+                "Angle (Rad)": round(rad, 4),
+                "sin(x)": round(sin_val, 4),
+                "cos(x)": round(cos_val, 4),
+                "tan(x)": (
+                    round(tan_calc, 4) if not np.isnan(tan_calc) else "Undefined"
+                ),
+            }
+        )
+
+    df_trig = pd.DataFrame(results)
+    print("--- Chapter 4: Trigonometric Functions - Unit Circle Values ---")
+    print(df_trig.to_string(index=False))
 
 
 def plot_trig_waves():
-    """Plots Sine, Cosine, Tangent, and Cotangent waves over 0 to 360 degrees."""
-    x_rad = np.linspace(0, 2 * np.pi, 1000)
-    x_deg = np.degrees(x_rad)
+    """Plots standard sine and cosine waves across [0, 2pi] with pi-formatted ticks."""
+    x = np.linspace(0, 2 * np.pi, 500)
+    sin_wave = np.sin(x)
+    cos_wave = np.cos(x)
 
-    y_sin = np.sin(x_rad)
-    y_cos = np.cos(x_rad)
+    fig, ax = plt.subplots(figsize=(9, 5))
 
-    # Mask undefined values to prevent vertical artifact connecting lines across asymptotes
-    y_tan = np.tan(x_rad)
-    y_tan[np.abs(y_tan) > 10] = np.nan  # Mask tangent asymptotes
-
-    with np.errstate(divide="ignore", invalid="ignore"):
-        y_cot = 1.0 / np.tan(x_rad)
-    y_cot[np.abs(y_cot) > 10] = np.nan  # Mask cotangent asymptotes
-
-    # Setup 1x2 subplot layout for visual clarity
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-
-    # --- Plot 1: Sine & Cosine ---
-    ax1.plot(x_deg, y_sin, label="y = sin(x)", color="blue", linewidth=2)
-    ax1.plot(
-        x_deg, y_cos, label="y = cos(x)", color="orange", linestyle="--"
+    ax.plot(
+        x, sin_wave, label=r"\(y = \sin(x)\)", color="#1f77b4", linewidth=2.5
     )
-    ax1.set_title("Sine & Cosine")
-    ax1.set_xlabel("Angle (Degrees)")
-    ax1.set_ylabel("Value")
-    ax1.set_xticks([0, 90, 180, 270, 360])
-    ax1.axhline(0, color="black", linewidth=0.8, linestyle=":")
-    ax1.grid(True, alpha=0.3)
-    ax1.legend()
-
-    # --- Plot 2: Tangent & Cotangent ---
-    ax2.plot(x_deg, y_tan, label="y = tan(x)", color="green", linewidth=2)
-    ax2.plot(
-        x_deg, y_cot, label="y = cot(x)", color="purple", linestyle="--"
+    ax.plot(
+        x,
+        cos_wave,
+        label=r"\(y = \cos(x)\)",
+        color="#e74c3c",
+        linestyle="--",
+        linewidth=2.5,
     )
-    # Vertical asymptotes for Tan at 90° and 270°
-    ax2.axvline(90, color="red", linestyle=":", alpha=0.7, label="Asymptotes")
-    ax2.axvline(270, color="red", linestyle=":", alpha=0.7)
 
-    ax2.set_title("Tangent & Cotangent")
-    ax2.set_xlabel("Angle (Degrees)")
-    ax2.set_ylabel("Value")
-    ax2.set_ylim(-5, 5)  # Truncate vertical axis for clear view
-    ax2.set_xticks([0, 90, 180, 270, 360])
-    ax2.axhline(0, color="black", linewidth=0.8, linestyle=":")
-    ax2.grid(True, alpha=0.3)
-    ax2.legend()
+    ax.set_title(
+        "Trigonometric Functions: Sine and Cosine Waves (Chapter 4)",
+        fontsize=13,
+        pad=15,
+        fontweight="bold",
+    )
+    ax.set_xlabel("Angle x (Radians)", fontsize=11)
+    ax.set_ylabel("Amplitude / Value", fontsize=11)
+
+    ax.set_xticks(
+        [0, np.pi / 2, np.pi, 3 * np.pi / 2, 2 * np.pi],
+        labels=["0", r"\(\frac{\pi}{2}\)", r"\(\pi\)", r"\(\frac{3\pi}{2}\)", r"\(2\pi\)"],
+    )
+
+    ax.grid(True, linestyle="--", alpha=0.6)
+    ax.legend(loc="upper right", fontsize=11)
 
     plt.tight_layout()
     plt.show()
 
 
 if __name__ == "__main__":
-    # 1. Run calculation tests
-    trig_calculator(30)
-    trig_calculator(45)
-    trig_calculator(90)
-
-    # 2. Render plots
+    verify_fundamental_trig_values()
     plot_trig_waves()
