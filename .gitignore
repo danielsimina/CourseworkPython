@@ -1,0 +1,13 @@
+# PyCharm / JetBrains IDE configuration folder
+.idea/
+
+# GitHub Copilot agent configuration files
+AGENTS.md
+
+# Byte-compiled / Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS-generated metadata
+.DS_Store
