@@ -11,8 +11,12 @@ This repository module contains interactive Python scripts, mathematical visuali
   * Analyzing polynomial zero multiplicities, end behavior, and horizontal/vertical asymptotes.
 * **Chapter 3: Exponential & Logarithmic Functions (`ch3_exponential_logarithmic.py`)**
   * Modeling exponential growth/decay and logarithmic scale transformations.
-* **Trigonometric Functions (`trigonometry.py`)**
+* **Chapter 4: Trigonometric Functions (`trigonometry.py`)**
   * Interactive unit circle calculations and multi-panel wave plots for $\sin(x)$, $\cos(x)$, $\tan(x)$, and $\cot(x)$ with asymptote masking.
+* **Chapter 4.8: Applications of Trigonometric Functions (`ch4_8_applications_trig.py`)**
+    * Exploring real-world applications of trigonometric functions, including modeling periodic phenomena and solving practical problems.
+* **Chapter 5: Analytic Trigonometry (`ch5_analytic_trigonometry.py`)**
+  * Exploring trigonometric identities, solving equations, and applying theorems in a computational context.
 
 ## 🛠 Tech Stack & Dependencies
 * **Language:** Python 3.x
