@@ -21,7 +21,8 @@ This repository bridges theoretical academic concepts with practical Python prog
 * **`ch2_examining_social_world.py`**: Analyzing research designs, variable relationships (Independent vs. Dependent), and plotting correlation trends.
 * **`ch3_culture_analyzer.py`**: Quantifying material vs. non-material cultural elements, language relativity (Sapir-Whorf Hypothesis), and value emphasis.
 * **`ch4_socialization_analyzer.py`**: Modeling shifts in primary and secondary agents of socialization (Family, Peers, School, Mass Media) across developmental life stages.
-
+* **`ch5_social_interaction.py`**: Exploring social interaction patterns, role expectations, and group dynamics through synthetic datasets and visualizations.
+* **`ch6_deviance_crime.py`**: Analyzing deviant behavior and crime patterns, including statistical modeling and visualization of crime data.
 
 ---
 
